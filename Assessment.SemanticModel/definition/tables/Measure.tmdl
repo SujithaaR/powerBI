@@ -1,0 +1,234 @@
+table Measure
+	lineageTag: 6fac7310-6ef6-4fee-a7e4-2de7a7ae3527
+
+	measure Bop = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    snowball_output[bop_arr] > 0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 8e57801e-4c76-4031-a8e7-c2ce0cf1216e
+
+	measure Downsell = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[downsell])),
+			    snowball_output[downsell] <> 0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: f9c9575e-03d0-4f28-b28e-a68c9abe4cbe
+
+	measure Customer_churn = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[customer_churn])),
+			    snowball_output[customer_churn] <> 0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 692c2913-058f-456f-aa9a-7dcc806b8411
+
+	measure Product_churn =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[product_churn])),
+			    snowball_output[product_churn] <> 0
+			)
+		formatString: 0
+		lineageTag: 5fb6ae56-d433-424f-a3ba-be9723a85249
+
+	measure GRR =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[grr])),
+			    snowball_output[grr] <> 0
+			)
+		formatString: 0
+		lineageTag: 5e0dfd40-3a05-4c2c-93b2-1faf108499cf
+
+	measure Upsell =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[upsell])),
+			    snowball_output[upsell] <> 0
+			)
+		formatString: 0
+		lineageTag: 2e9e2619-2a95-4f46-bab5-072cd6552ad4
+
+	measure Cross_sell =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[cross_sell])),
+			    snowball_output[cross_sell] <> 0
+			)
+		formatString: 0
+		lineageTag: a56efb5f-f22f-48c4-baf6-0ccaf33ffb13
+
+	measure NRR =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[nrr])),
+			    snowball_output[nrr] <> 0
+			)
+		formatString: 0
+		lineageTag: 222fb707-6b85-444b-b580-ed279861cd5b
+
+	measure New_Cust =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[new_customer])),
+			    snowball_output[new_customer] <> 0
+			)
+		formatString: 0
+		lineageTag: f334b274-71e9-4955-948b-c0f5e8a3529d
+
+	measure Eop =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(snowball_output[customer_key]),
+			    NOT(ISBLANK(snowball_output[eop_arr])),
+			    snowball_output[eop_arr] <> 0
+			)
+		formatString: 0
+		lineageTag: 3af943c0-c0bb-40e1-b144-6651e21bff55
+
+	measure downsell_percent = ```
+			
+			DIVIDE(
+			    SUM(snowball_output[downsell]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			) *100
+			
+			```
+		lineageTag: bdffec88-db44-4601-83f9-6d2e5d92cd0f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure customer_churn_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[customer_churn]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: d44e0fe6-53f4-4365-a6b8-0c032472d6ad
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure product_churn_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[product_churn]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: d7c7c043-7622-424f-8fdb-68f673d5f481
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure grr_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[grr]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: 7bb014c6-b3e0-4048-8c06-08821ff7ac72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure nrr_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[nrr]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: c439cfbd-8eaa-4cf6-9b83-022d73f70857
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure arr_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[eop_arr]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: 58552bad-622b-441e-9ed7-20325c21726a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure upsell_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[upsell]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: 1e556c37-758a-4301-bbb7-0ed1396c16f6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure cross_sell_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[cross_sell]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: 1401aa37-d05c-428e-8265-82cf6c0147f1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure new_cust_percent =
+			
+			DIVIDE(
+			    SUM(snowball_output[new_customer]),
+			    SUM(snowball_output[bop_arr]),
+			    0
+			)*100
+		lineageTag: f9302761-f707-4f72-9f71-0f86f2752300
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		dataType: int64
+		formatString: 0
+		lineageTag: 7afe6f1e-a057-4699-96d8-6e49eb4540bd
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Measure = calculated
+		mode: import
+		source = ```
+				
+				CALCULATE(
+				    DISTINCTCOUNT(snowball_output[customer_key]),
+				    NOT(ISBLANK(snowball_output[downsell])),
+				    snowball_output[downsell] > 0
+				)
+				
+				```
+
+	annotation PBI_Id = 7ac32f295e1c48d6809c47878e8d8e6c
+

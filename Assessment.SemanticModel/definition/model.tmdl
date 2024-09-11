@@ -20,6 +20,7 @@ ref table calendar
 ref table LocalDateTable_bf396545-98e8-4850-aedd-84407299235c
 ref table Product
 ref table customer
+ref table Measure
 
 ref cultureInfo en-US
 
