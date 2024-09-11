@@ -1,0 +1,7 @@
+EVALUATE
+SUMMARIZE(
+    snowball_output,
+    snowball_output[month_roll],
+    snowball_output[period_type],
+    "customer_churn_percent", DIVIDE(SUM(snowball_output[customer_churn]), SUM(snowball_output[bop_arr]), 0) * 100
+)

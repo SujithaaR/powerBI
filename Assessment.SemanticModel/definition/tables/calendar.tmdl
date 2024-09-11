@@ -1,0 +1,63 @@
+table calendar
+	lineageTag: 52ef6b42-a46f-4c48-af25-cfbfbc3ef624
+
+	column Date
+		dataType: dateTime
+		formatString: dd-mm-yyyy
+		lineageTag: e8214487-e75d-4518-a3e7-a4c1f4ecafbc
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 721de51e-a05a-4b06-bd5b-a5d3c314591b
+			defaultHierarchy: LocalDateTable_bf396545-98e8-4850-aedd-84407299235c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column year = year('calendar'[Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c55b4ef-6617-4943-8651-00c547b852c0
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthnum = MONTH(('calendar'[Date]))
+		dataType: int64
+		formatString: 0
+		lineageTag: 735208c0-e1ed-4aab-b882-e24124e6774c
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column quater = "Qtr "& QUARTER('calendar'[Date])
+		dataType: string
+		lineageTag: 35cf01f6-1c67-498c-a060-c594a538c02b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthname = FORMAT('calendar'[Date],"mmm")
+		dataType: string
+		lineageTag: 55119d80-5515-4e1a-9e0e-5453d8fabe02
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calendar = calculated
+		mode: import
+		source = CALENDAR(MIN(snowball_output[month_roll]),MAX(snowball_output[month_roll]))
+
+	annotation PBI_Id = 33b7e796900b439abb0ca036c1599ea8
+

@@ -1,0 +1,17 @@
+relationship 721de51e-a05a-4b06-bd5b-a5d3c314591b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: calendar.Date
+	toColumn: LocalDateTable_bf396545-98e8-4850-aedd-84407299235c.Date
+
+relationship 8063a68c-2b4f-2356-f987-35718a890259
+	fromColumn: snowball_output.month_roll
+	toColumn: calendar.Date
+
+relationship AutoDetected_1375e286-594c-4d1a-b991-62f57a8faa45
+	fromColumn: snowball_output.product_key
+	toColumn: Product.product_key
+
+relationship AutoDetected_de1fda59-bdb6-4bc7-806d-12061993070f
+	fromColumn: snowball_output.customer_key
+	toColumn: customer.customer_key
+
